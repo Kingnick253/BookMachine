@@ -19,7 +19,7 @@ const resolvers = {
             const token = signToken(user);
             return {token, user};
         },
-        
+
         login: async (parent, {email, password}) => {
             const user = await User.findOne({ email });
             if(!user) {
@@ -38,14 +38,24 @@ const resolvers = {
             if (context.user) {
                 const updateUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {savedBooks: {bookId: args.bookId}}},
-                    {new: true}
+                    {$push: {savedBooks: args}},
+                    {new: true, runValidator: true}
                 );
                 return updateUser;
             }
             throw new AuthenticationError("Need to be logged in to do this");
+        },
+        removeBook: async (parent, args, context) => {
+            if (context.user) {
+                const updateUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {savedBooks: {bookId: args.bookId}}},
+                    {new: true}
+                );
+                    return updateUser;
+            }
+            throw new AuthenticationError("Need to be logged in to do this");
         }
-
     }
 };
 
