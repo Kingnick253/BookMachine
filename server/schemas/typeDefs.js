@@ -9,6 +9,15 @@ const typeDefs = gql`
     bookCount: Int
     savedBooks: [Book]
   }
+  type Book {
+    bookId: ID
+    authors: [String]
+    description: String
+    title: String
+    image: String
+    link: String
+  }
+
 
  
 `;
