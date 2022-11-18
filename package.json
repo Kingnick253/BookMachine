@@ -1,7 +1,7 @@
 {
   "name": "googlebooks-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Google Books API refactored from RESTful API to run with GraphQL and Apollo Server.",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
@@ -15,4 +15,5 @@
   "devDependencies": {
     "concurrently": "^5.1.0"
   }
+  
 }
