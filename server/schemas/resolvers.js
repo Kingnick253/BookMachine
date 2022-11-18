@@ -33,7 +33,17 @@ const resolvers = {
             return {token, user};
         },
         
-
+        saveBook: async (parent, args, context) => {
+            if (context.user) {
+                const updateUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {savedBooks: {bookId: args.bookId}}},
+                    {new: true}
+                );
+                return updateUser;
+            }
+            throw new AuthenticationError("Need to be logged in to do this");
+        }
     }
 };
 
