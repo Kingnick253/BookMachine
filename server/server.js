@@ -37,7 +37,7 @@ const StartApolloServer = async (typeDefs, resolvers) => {
       console.log(
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
       );
-    });
+    })
   });
 };
 StartApolloServer(typeDefs, resolvers);
