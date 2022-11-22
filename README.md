@@ -20,7 +20,10 @@
     
 ## Usage
   
-  [quiz me.webm](https://user-images.githubusercontent.com/70127239/202877346-7335b7e6-241d-4e69-b872-ec7a192bbda6.webm)
+  ![bookMachine](https://user-images.githubusercontent.com/70127239/203211553-db541a42-a804-477f-8874-9d608b4681f0.jpg)
+
+
+![more pics hw 21](https://user-images.githubusercontent.com/70127239/203211676-21a09598-4c73-4258-a42b-bad0c97f72e8.jpg)
 
     
 ## Credits
