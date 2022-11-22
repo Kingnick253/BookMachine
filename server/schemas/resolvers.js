@@ -17,7 +17,7 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
-            return {user,token};
+            return {user, token};
         },
 
         login: async (parent, {email, password}) => {
@@ -34,27 +34,28 @@ const resolvers = {
         },
 
         
-        saveBook: async (parent, { book }, context) => {
-            if (context.user) {
-                const updateUser = await User.findOneAndUpdate(
+        saveBook: async (parent, args, context) =>{
+            if(context.user){
+                const updateUser = await user.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {savedBooks: book}},
-                    {new: true, runValidator: true}
+                    {$push:{saveBook: args}},
+                    {new: true, runValidtors: true}
                 );
                 return updateUser;
             }
-            throw new AuthenticationError("Need to be logged in to do this");
+            throw new AuthenticationError('Not Logged In');
         },
-        removeBook: async (parent, {bookId}, context) => {
-            if (context.user) {
-                const updateUser = await User.findOneAndUpdate(
+
+        removeBook: async (parent, { bookId }, context) =>{
+            if(context.user){
+                const updateUser = await user.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {savedBooks: { bookId: bookId }}},
+                    {$pull:{saveBook: {bookId}}},
                     {new: true}
                 );
-                    return updateUser;
+                return updateUser;
             }
-            throw new AuthenticationError("Need to be logged in to do this");
+            throw new AuthenticationError('Not Logged In');
         }
     }
 };
